@@ -1,0 +1,695 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10100e">
+  <meta name="description" content="BLANK 2569 - Document Download Portal">
+  <title>BLANK 2569 | Document Download Portal</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #10100e;
+      --panel: #191916;
+      --panel2: #20201c;
+      --gold: #d8b66a;
+      --gold2: #f0d89b;
+      --text: #f5f1e7;
+      --muted: #aaa69b;
+      --border: rgba(216,182,106,.2);
+      --green: #6fcf97;
+      --red: #ff8585;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(ellipse at 50% -20%, rgba(216,182,106,.16), transparent 55%),
+        var(--bg);
+      color: var(--text);
+      font-family: 'Kanit', sans-serif;
+      min-height: 100vh;
+    }
+
+    button, input, select { font: inherit; }
+
+    .container {
+      width: min(1120px, calc(100% - 36px));
+      margin: auto;
+    }
+
+    header {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .brand-icon {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      color: #15130e;
+      background: linear-gradient(135deg, var(--gold2), #a9873f);
+      border-radius: 12px;
+    }
+
+    .brand small {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 2px;
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--green);
+      font-size: 12px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--green);
+    }
+
+    .hero {
+      text-align: center;
+      padding: 65px 12px 45px;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      letter-spacing: 4px;
+      font-size: 12px;
+      font-weight: 400;
+    }
+
+    h1 {
+      margin: 12px 0 4px;
+      font-size: clamp(42px, 8vw, 76px);
+      line-height: 1.15;
+      font-weight: 600;
+      letter-spacing: 2px;
+      background: linear-gradient(110deg, #fff4cf, #d8b66a, #fff0c5);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      color: var(--muted);
+      margin: 12px 0 0;
+      font-weight: 300;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 30px;
+    }
+
+    .stat {
+      background: rgba(25,25,22,.85);
+      border: 1px solid var(--border);
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+    }
+
+    .stat .material-icons-round {
+      color: var(--gold);
+      font-size: 25px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 25px;
+      margin-top: 5px;
+      color: var(--gold2);
+    }
+
+    .stat span:last-child {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 220px;
+      position: relative;
+    }
+
+    .search-box .material-icons-round {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gold);
+    }
+
+    input, select {
+      width: 100%;
+      padding: 13px 15px 13px 45px;
+      background: var(--panel);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      outline: none;
+    }
+
+    select {
+      width: 190px;
+      padding-left: 15px;
+      cursor: pointer;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--gold);
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 25px 0 15px;
+      gap: 10px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    .section-heading small {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .file-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 15px;
+    }
+
+    .file-card {
+      background: linear-gradient(145deg, #1d1d19, #151512);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      transition: .2s ease;
+      min-width: 0;
+    }
+
+    .file-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold);
+      box-shadow: 0 10px 30px rgba(0,0,0,.2);
+    }
+
+    .file-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .file-icon {
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: rgba(216,182,106,.12);
+      color: var(--gold);
+    }
+
+    .file-type {
+      font-size: 10px;
+      color: var(--gold);
+      border: 1px solid var(--border);
+      padding: 4px 9px;
+      border-radius: 20px;
+    }
+
+    .file-name {
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+      min-height: 45px;
+    }
+
+    .file-meta {
+      color: var(--muted);
+      font-size: 11px;
+      margin: 9px 0 16px;
+    }
+
+    .file-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn {
+      flex: 1;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+      border-radius: 8px;
+      padding: 9px 8px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: .2s;
+      border: 1px solid var(--border);
+    }
+
+    .btn .material-icons-round { font-size: 16px; }
+
+    .btn-view {
+      color: var(--gold2);
+      background: rgba(216,182,106,.08);
+    }
+
+    .btn-download {
+      background: linear-gradient(120deg, #e6ca83, #b18c43);
+      color: #17140d;
+      border: none;
+      font-weight: 500;
+    }
+
+    .btn:hover { filter: brightness(1.12); }
+
+    .empty {
+      text-align: center;
+      padding: 60px 15px;
+      color: var(--muted);
+      grid-column: 1 / -1;
+    }
+
+    .empty .material-icons-round {
+      display: block;
+      font-size: 45px;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .message {
+      display: none;
+      text-align: center;
+      padding: 35px 15px;
+      border: 1px dashed var(--border);
+      border-radius: 14px;
+      color: var(--muted);
+      margin-bottom: 25px;
+    }
+
+    .message.show { display: block; }
+
+    .message .material-icons-round {
+      display: block;
+      font-size: 35px;
+      margin-bottom: 10px;
+      color: var(--gold);
+    }
+
+    .refresh {
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--gold2);
+      padding: 7px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    footer {
+      margin-top: 65px;
+      border-top: 1px solid var(--border);
+      padding: 25px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    footer strong { color: var(--gold); }
+
+    @media (max-width: 800px) {
+      .file-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 560px) {
+      .container { width: calc(100% - 24px); }
+      .hero { padding: 48px 5px 30px; }
+      .stats { gap: 7px; }
+      .stat { padding: 14px 5px; }
+      .stat strong { font-size: 20px; }
+      .stat span:last-child { font-size: 10px; }
+      .file-grid { grid-template-columns: 1fr; }
+      select { width: 100%; }
+      .toolbar { display: grid; }
+      .nav { align-items: flex-start; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-icon">
+          <span class="material-icons-round">folder_open</span>
+        </div>
+        <div>
+          NAKORNPING
+          <small>DOCUMENT PORTAL</small>
+        </div>
+      </div>
+      <div class="status">
+        <span class="status-dot"></span>
+        ONLINE PORTAL
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="eyebrow">DOCUMENT DOWNLOAD PORTAL</div>
+      <h1>BLANK 2569</h1>
+      <p>ระบบศูนย์รวมเอกสาร ดาวน์โหลดและเข้าถึงไฟล์ได้สะดวก</p>
+    </section>
+
+    <section class="stats">
+      <div class="stat">
+        <span class="material-icons-round">folder</span>
+        <strong id="totalFiles">0</strong>
+        <span>รายการไฟล์</span>
+      </div>
+      <div class="stat">
+        <span class="material-icons-round">storage</span>
+        <strong id="totalSize">0 MB</strong>
+        <span>ขนาดรวม</span>
+      </div>
+      <div class="stat">
+        <span class="material-icons-round">download</span>
+        <strong id="visibleFiles">0</strong>
+        <span>รายการที่แสดง</span>
+      </div>
+    </section>
+
+    <div class="section-heading">
+      <h2>คลังเอกสาร</h2>
+      <button class="refresh" id="refreshBtn">
+        <span class="material-icons-round" style="font-size:14px;vertical-align:middle">refresh</span>
+        รีเฟรชข้อมูล
+      </button>
+    </div>
+
+    <section class="toolbar">
+      <div class="search-box">
+        <span class="material-icons-round">search</span>
+        <input id="searchInput" type="search" placeholder="ค้นหาชื่อไฟล์...">
+      </div>
+      <select id="categoryFilter">
+        <option value="all">ทุกประเภทไฟล์</option>
+        <option value="PDF">PDF</option>
+        <option value="WORD">Word</option>
+        <option value="EXCEL">Excel</option>
+        <option value="IMAGE">รูปภาพ</option>
+        <option value="ZIP">ZIP</option>
+        <option value="OTHER">อื่น ๆ</option>
+      </select>
+    </section>
+
+    <div id="loadingMessage" class="message show">
+      <span class="material-icons-round">hourglass_top</span>
+      กำลังโหลดรายการเอกสาร...
+    </div>
+
+    <div id="errorMessage" class="message">
+      <span class="material-icons-round">cloud_off</span>
+      <div id="errorText">ไม่สามารถโหลดข้อมูลได้</div>
+    </div>
+
+    <section class="file-grid" id="fileGrid"></section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <strong>BLANK 2569</strong><br>
+      NAKORNPING DOCUMENT DOWNLOAD PORTAL<br>
+      © 2026 All Rights Reserved
+    </div>
+  </footer>
+
+  <script>
+    /*
+     * ตั้งค่า URL ของ Google Apps Script Web App ที่ลงท้ายด้วย /exec
+     */
+    const API_URL = "ใส่_URL_GOOGLE_APPS_SCRIPT_EXEC";
+
+    let allFiles = [];
+
+    const $ = id => document.getElementById(id);
+
+    function escapeHTML(value) {
+      return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      })[char]);
+    }
+
+    function formatSize(bytes) {
+      const size = Number(bytes) || 0;
+      if (size < 1024) return size + " B";
+      if (size < 1024 * 1024) return (size / 1024).toFixed(1) + " KB";
+      if (size < 1024 * 1024 * 1024)
+        return (size / (1024 * 1024)).toFixed(2) + " MB";
+      return (size / (1024 * 1024 * 1024)).toFixed(2) + " GB";
+    }
+
+    function categoryOf(file) {
+      const category = String(file.category || "").toUpperCase();
+      if (["PDF", "WORD", "EXCEL", "IMAGE", "ZIP", "OTHER"].includes(category))
+        return category;
+
+      const name = String(file.name || "");
+      const ext = name.split(".").pop().toLowerCase();
+
+      if (ext === "pdf") return "PDF";
+      if (["doc", "docx"].includes(ext)) return "WORD";
+      if (["xls", "xlsx", "csv"].includes(ext)) return "EXCEL";
+      if (["jpg", "jpeg", "png", "gif", "webp"].includes(ext)) return "IMAGE";
+      if (["zip", "rar", "7z"].includes(ext)) return "ZIP";
+      return "OTHER";
+    }
+
+    function iconOf(category) {
+      return {
+        PDF: "picture_as_pdf",
+        WORD: "description",
+        EXCEL: "table_chart",
+        IMAGE: "image",
+        ZIP: "folder_zip",
+        OTHER: "insert_drive_file"
+      }[category] || "insert_drive_file";
+    }
+
+    function normalizeFile(file) {
+      return {
+        name: file.name || file.fileName || "ไม่มีชื่อไฟล์",
+        mimeType: file.mimeType || "",
+        size: Number(file.size || 0),
+        category: categoryOf(file),
+        modifiedTime: file.modifiedTime || file.updatedAt || "",
+        viewUrl: file.viewUrl || file.webViewLink || "",
+        downloadUrl: file.downloadUrl || file.directDownloadUrl || ""
+      };
+    }
+
+    function loadFiles() {
+      if (!API_URL || API_URL.includes("ใส่_URL")) {
+        showError("กรุณากำหนด API_URL ของ Google Apps Script ในไฟล์ index.html");
+        return;
+      }
+
+      $("loadingMessage").classList.add("show");
+      $("errorMessage").classList.remove("show");
+      $("fileGrid").innerHTML = "";
+
+      const callbackName = "portalCallback_" + Date.now();
+
+      const timeout = setTimeout(() => {
+        cleanup();
+        showError("หมดเวลารอข้อมูล กรุณาตรวจสอบ Google Apps Script และลองใหม่");
+      }, 20000);
+
+      function cleanup() {
+        clearTimeout(timeout);
+        delete window[callbackName];
+        if (script.parentNode) script.remove();
+      }
+
+      window[callbackName] = function(response) {
+        cleanup();
+        $("loadingMessage").classList.remove("show");
+
+        if (!response || response.success === false) {
+          showError(response?.message || "ไม่สามารถอ่านข้อมูลจาก Google Drive ได้");
+          return;
+        }
+
+        const files = Array.isArray(response)
+          ? response
+          : (response.files || response.data || []);
+
+        allFiles = files.map(normalizeFile);
+        updateStats();
+        renderFiles();
+      };
+
+      const script = document.createElement("script");
+      script.src = API_URL +
+        (API_URL.includes("?") ? "&" : "?") +
+        "callback=" + encodeURIComponent(callbackName) +
+        "&t=" + Date.now();
+
+      script.onerror = function() {
+        cleanup();
+        showError("เชื่อมต่อ Google Apps Script ไม่สำเร็จ");
+      };
+
+      document.body.appendChild(script);
+    }
+
+    function showError(message) {
+      $("loadingMessage").classList.remove("show");
+      $("errorMessage").classList.add("show");
+      $("errorText").textContent = message;
+    }
+
+    function updateStats() {
+      const totalBytes = allFiles.reduce((sum, file) => sum + file.size, 0);
+      $("totalFiles").textContent = allFiles.length.toLocaleString("th-TH");
+      $("totalSize").textContent = formatSize(totalBytes);
+    }
+
+    function renderFiles() {
+      const keyword = $("searchInput").value.trim().toLowerCase();
+      const category = $("categoryFilter").value;
+
+      const filtered = allFiles.filter(file => {
+        const matchName = file.name.toLowerCase().includes(keyword);
+        const matchCategory = category === "all" || file.category === category;
+        return matchName && matchCategory;
+      });
+
+      $("visibleFiles").textContent = filtered.length.toLocaleString("th-TH");
+
+      if (!filtered.length) {
+        $("fileGrid").innerHTML = `
+          <div class="empty">
+            <span class="material-icons-round">search_off</span>
+            ไม่พบเอกสารที่ค้นหา
+          </div>`;
+        return;
+      }
+
+      $("fileGrid").innerHTML = filtered.map(file => {
+        const name = escapeHTML(file.name);
+        const type = escapeHTML(file.category);
+        const size = formatSize(file.size);
+        const icon = iconOf(file.category);
+
+        const viewUrl = safeUrl(file.viewUrl);
+        const downloadUrl = safeUrl(file.downloadUrl || file.viewUrl);
+
+        return `
+          <article class="file-card">
+            <div class="file-top">
+              <div class="file-icon">
+                <span class="material-icons-round">${icon}</span>
+              </div>
+              <span class="file-type">${type}</span>
+            </div>
+
+            <div class="file-name" title="${name}">${name}</div>
+            <div class="file-meta">
+              ${escapeHTML(size)}
+              ${file.modifiedTime ? " · " + escapeHTML(file.modifiedTime) : ""}
+            </div>
+
+            <div class="file-actions">
+              ${viewUrl ? `
+                <a class="btn btn-view" href="${viewUrl}" target="_blank" rel="noopener noreferrer">
+                  <span class="material-icons-round">visibility</span>
+                  เปิดไฟล์
+                </a>` : ""}
+              ${downloadUrl ? `
+                <a class="btn btn-download" href="${downloadUrl}" target="_blank" rel="noopener noreferrer">
+                  <span class="material-icons-round">download</span>
+                  ดาวน์โหลด
+                </a>` : ""}
+            </div>
+          </article>`;
+      }).join("");
+    }
+
+    function safeUrl(value) {
+      try {
+        const url = new URL(value);
+        if (url.protocol === "https:" || url.protocol === "http:")
+          return escapeHTML(url.href);
+      } catch (error) {}
+      return "";
+    }
+
+    $("searchInput").addEventListener("input", renderFiles);
+    $("categoryFilter").addEventListener("change", renderFiles);
+    $("refreshBtn").addEventListener("click", loadFiles);
+
+    loadFiles();
+  </script>
+</body>
+</html>
